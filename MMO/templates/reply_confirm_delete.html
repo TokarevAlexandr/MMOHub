@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirm Reply Deletion</title>
+</head>
+<body>
+    <h1>Confirm Reply Deletion</h1>
+    <p>Are you sure you want to delete this reply?</p>
+    <p><strong>Reply Text:</strong> {{ reply.reply_text }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Confirm Delete">
+        <a href="{% url 'post_detail' pk=reply.post.pk %}">Cancel</a>
+    </form>
+</body>
+</html>

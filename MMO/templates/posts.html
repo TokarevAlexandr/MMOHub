@@ -1,0 +1,38 @@
+{% extends "flatpages/default.html" %}
+
+{% block title %}
+All posts
+{% endblock title %}
+
+{% block content %}
+<h1>All posts</h1>
+<h3>{{ time_now|date:'M d Y' }}</h3>
+<br>
+{% if posts %}
+    {% for post in posts %}
+    <p>
+        <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a><br>
+        Category: {{ post.category.name }}
+        <br>
+        {{ post.text | safe }}
+        <br>
+        <br>
+    </p>
+    <hr style="height:4px;color:gray">
+    <style>
+        hr {
+            width: 40%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    {% endfor %}
+{% else %}
+   <h2>No posts available!</h2>
+{% endif %}
+
+{% if user.is_authenticated %}
+    <a href="{% url 'post_create' %}">Create New Post</a>
+{% endif %}
+
+{% endblock content %}

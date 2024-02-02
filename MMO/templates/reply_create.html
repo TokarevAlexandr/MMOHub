@@ -1,0 +1,20 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Add Reply
+{% endblock title %}
+
+{% block content %}
+
+
+<h1>Add Reply</h1>
+<h3>{{ time_now|date:'M d Y' }}</h3>
+<br>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+<br>
+<br>
+{% endblock content %}

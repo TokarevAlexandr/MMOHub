@@ -1,0 +1,21 @@
+{% extends 'flatpages/default.html' %}
+{% load static %}
+
+{% block title %}
+Edit Post
+{% endblock title %}
+
+{% block content %}
+<script src="{% static 'js/scripts.js' %}"></script>
+
+<h1>Edit Post</h1>
+<h3>{{ time_now|date:'M d Y' }}</h3>
+<br>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update</button>
+</form>
+<br>
+<br>
+{% endblock content %}

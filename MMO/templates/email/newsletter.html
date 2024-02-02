@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Newsletter</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; background-color: #f9f9f9; padding: 20px;">
+
+  <table style="width: 100%; max-width: 600px; margin: 0 auto; background-color: #fff; border-collapse: collapse;">
+    <tr>
+      <td style="padding: 20px; text-align: center; background-color: #007bff;">
+        <h1 style="color: #fff;">Our Newsletter</h1>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 20px;">
+        <div style="font-size: 16px;">
+          {{ message }}
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 20px; text-align: center; background-color: #007bff;">
+        <p style="color: #fff;">To unsubscribe, click <a href="{{ unsubscribe_link }}">here</a>.</p>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'flatpages/default.html' %}
+
+{% block content %}
+    <h1>{{ object.title }}</h1>
+
+    <!-- Display the post image if it exists -->
+    {% if object.image %}
+        <img src="{{ object.image.url }}" alt="{{ object.title }}">
+    {% endif %}
+
+    <!-- Display the video if it exists -->
+    {% if object.video_url %}
+        <iframe width="560" height="315" src="{{ object.video_url }}" frameborder="0" allowfullscreen></iframe>
+    {% endif %}
+
+    <p>{{ object.post_text }}</p>
+
+    <p>Category: {{ object.category }}</p>
+
+    <!-- Display existing replies -->
+    {% for reply in object.replies.all %}
+        <div>
+            <p>{{ reply.reply_text }}</p>
+            <p>By: {{ reply.sender.username }}</p>
+            <p>Date: {{ reply.date_created }}</p>
+        </div>
+    {% endfor %}
+
+    <!-- Display the form for creating replies -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

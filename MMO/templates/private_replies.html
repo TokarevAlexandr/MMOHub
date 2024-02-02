@@ -1,0 +1,45 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Private Replies
+{% endblock title %}
+
+{% block content %}
+
+<h1>Private Replies</h1>
+<h3>{{ time_now|date:'M d Y' }}</h3>
+<br>
+
+<!-- Add a form for filtering replies -->
+<form method="get">
+    <select name="post">
+        <option value="">All Posts</option>
+        {% for post in user_posts %}
+            <option value="{{ post.pk }}" {% if selected_post_id == post.pk %}selected{% endif %}>{{ post.title }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
+{% if replies %}
+    {% for reply in replies %}
+        <p>
+            <b>Reply to: {{ reply.post.title }}</b>
+            <br>
+            {{ reply.reply_time|date:'M d Y' }}
+            <br>
+            {{ reply.reply_text | safe }}
+            <br>
+            {% if not reply.approved %}
+                <a href="{% url 'accept_reply' reply.pk %}">Accept</a> |
+            {% endif %}
+            <a href="{% url 'delete_reply' reply.pk %}">Delete</a>
+        </p>
+    {% endfor %}
+{% else %}
+   <h2>No replies available!</h2>
+{% endif %}
+
+</form>
+
+{% endblock content %}
